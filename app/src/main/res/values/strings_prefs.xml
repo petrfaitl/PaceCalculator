@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="pref_distance_title">Preferred distances</string>
+
+    <string name="prefs_multiple_values">Multiple values</string>
+    <string name="pref_distance_key" translatable="false">pref_distances</string>
+    <string-array name="pref_distances_list_titles">
+        <item>400m</item>
+        <item>800m</item>
+        <item>1000m</item>
+        <item>1200m</item>
+        <item>1500m</item>
+        <item>1600m</item>
+        <item>Mile</item>
+        <item>2000m</item>
+        <item>3000m</item>
+        <item>5km</item>
+        <item>6km</item>
+        <item>8km</item>
+        <item>10km</item>
+        <item>15km</item>
+        <item>10miles</item>
+        <item>20km</item>
+        <item>1/2 Marathon</item>
+        <item>Marathon</item>
+        <item>50km</item>
+        <item>100km</item>
+        <item>100miles</item>
+    </string-array>
+
+    <string-array name="pref_distances_list_values">
+        <item>0.4</item>
+        <item>0.8</item>
+        <item>1</item>
+        <item>1.2</item>
+        <item>1.5</item>
+        <item>1.6</item>
+        <item>1.609</item>
+        <item>2</item>
+        <item>3</item>
+        <item>5</item>
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+        <item>15</item>
+        <item>16.09</item>
+        <item>20</item>
+        <item>21.1</item>
+        <item>42.2</item>
+        <item>50</item>
+        <item>100</item>
+        <item>160.9</item>
+    </string-array>
+
+    <string-array name="pref_distances_list_default_values">
+        <item>0.4</item>
+        <item>0.8</item>
+        <item>1</item>
+        <item>1.2</item>
+        <item>1.5</item>
+        <item>1.6</item>
+        <item>1.609</item>
+        <item>5</item>
+        <item>10</item>
+        <item>21.1</item>
+        <item>42.2</item>
+
+    </string-array>
+
+    <string name="pref_about_header">About you</string>
+    <string name="pref_gender_key" translatable="false">pref_gender</string>
+    <string-array name="pref_gender_list_title">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Not specified</item>
+    </string-array>
+    <string-array name="pref_gender_list_values">
+        <item>male</item>
+        <item>female</item>
+        <item>none</item>
+    </string-array>
+    <string name="pref_gender_default">none</string>
+    <string name="pref_gender_title">Gender</string>
+
+    <string name="pref_weight">Weight</string>
+    <string name="pref_weight_key" translatable="false">pref_weight</string>
+    <string name="pref_age">Age</string>
+    <string name="pref_age_key" translatable="false">pref_age</string>
+    <string name="prefs_results_header">Results</string>
+    <string name="pref_age_default">Unknown</string>
+    <string name="pref_weight_default">0</string>
+
+</resources>

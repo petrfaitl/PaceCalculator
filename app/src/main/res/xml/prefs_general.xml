@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/prefs_results_header">
+
+        <MultiSelectListPreference
+            android:defaultValue="@array/pref_distances_list_default_values"
+            android:entries="@array/pref_distances_list_titles"
+            android:entryValues="@array/pref_distances_list_values"
+            android:key="@string/pref_distance_key"
+            android:summary="@string/prefs_multiple_values"
+            android:title="@string/pref_distance_title"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_about_header">
+
+        <ListPreference
+            android:defaultValue="@string/pref_gender_default"
+            android:entries="@array/pref_gender_list_title"
+            android:entryValues="@array/pref_gender_list_values"
+            android:key="@string/pref_gender_key"
+            android:title="@string/pref_gender_title"
+            >
+
+        </ListPreference>
+
+        <EditTextPreference
+            android:key="@string/pref_age_key"
+            android:title="@string/pref_age"
+            android:defaultValue="@string/pref_age_default"
+            android:selectAllOnFocus="true"
+            android:inputType="number"
+            android:maxLines="1"
+            android:singleLine="true">
+
+        </EditTextPreference>
+
+        <EditTextPreference
+            android:key="@string/pref_weight_key"
+            android:title="@string/pref_weight"
+            android:defaultValue="@string/pref_weight_default"
+            android:selectAllOnFocus="true"
+            android:inputType="number"
+            android:maxLines="1"
+            android:singleLine="true">
+
+        </EditTextPreference>
+
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
