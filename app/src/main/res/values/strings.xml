@@ -2,11 +2,21 @@
 <resources>
 
     <string name="app_name">Pace Calculator</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="action_settings">Settings</string>
     <string name="distance">distance</string>
     <string name="pace_per_km">pace per km</string>
     <string name="pace_per_mile">pace per mile</string>
-
+    <string name="pace_in_km">pace in km</string>
+    <string name="estimated_time">estimated time</string>
+    <string name="pace_in_miles">pace in miles</string>
+    <string name="km">km</string>
+    <string name="miles">miles</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="time_button_label">TIME</string>
+    <string name="distance_button_label">DISTANCE</string>
+    <string name="pace_button_label">PACE</string>
+    <string name="clear">clear</string>
+    <string name="done">Done</string>
 
 </resources>

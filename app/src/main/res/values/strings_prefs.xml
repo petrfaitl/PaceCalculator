@@ -31,41 +31,41 @@
     </string-array>
 
     <string-array name="pref_distances_list_values">
-        <item>0.4</item>
-        <item>0.8</item>
-        <item>1</item>
-        <item>1.2</item>
-        <item>1.5</item>
-        <item>1.6</item>
-        <item>1.609</item>
-        <item>2</item>
-        <item>3</item>
-        <item>5</item>
-        <item>6</item>
-        <item>8</item>
-        <item>10</item>
-        <item>15</item>
-        <item>16.09</item>
-        <item>20</item>
-        <item>21.1</item>
-        <item>42.2</item>
-        <item>50</item>
-        <item>100</item>
-        <item>160.9</item>
+        <item>400</item>
+        <item>800</item>
+        <item>1000</item>
+        <item>1200</item>
+        <item>1500</item>
+        <item>1600</item>
+        <item>1609</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>5000</item>
+        <item>6000</item>
+        <item>8000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>16090</item>
+        <item>20000</item>
+        <item>21100</item>
+        <item>42200</item>
+        <item>50000</item>
+        <item>100000</item>
+        <item>160900</item>
     </string-array>
 
     <string-array name="pref_distances_list_default_values">
-        <item>0.4</item>
-        <item>0.8</item>
-        <item>1</item>
-        <item>1.2</item>
-        <item>1.5</item>
-        <item>1.6</item>
-        <item>1.609</item>
-        <item>5</item>
-        <item>10</item>
-        <item>21.1</item>
-        <item>42.2</item>
+        <item>400</item>
+        <item>800</item>
+        <item>1000</item>
+        <item>1200</item>
+        <item>1500</item>
+        <item>1600</item>
+        <item>1609</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>21100</item>
+        <item>42200</item>
 
     </string-array>
 

@@ -19,6 +19,7 @@ public class MainActivity extends Activity
         {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new ResultsFragment())
+                    .addToBackStack(null)
                     .commit();
         }
     }
@@ -44,9 +45,17 @@ public class MainActivity extends Activity
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
             return true;
+        } else if(id == R.id.clear)
+        {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.container, new ResultsFragment())
+                    .commit();
+
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }

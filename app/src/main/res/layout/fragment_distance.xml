@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:focusableInTouchMode="true"
+              android:id="@+id/numberPickerFragment"
+              android:gravity="center_horizontal"
+    >
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPickerKilometers"
+        />
+
+    <Space
+        android:layout_width="@dimen/elements_padding"
+        android:layout_height="match_parent"
+        />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPickerMeters"
+        android:clickable="true"/>
+
+    <Space
+        android:layout_width="@dimen/elements_padding"
+        android:layout_height="match_parent"
+        />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/units">
+
+        </NumberPicker>
+</LinearLayout>
