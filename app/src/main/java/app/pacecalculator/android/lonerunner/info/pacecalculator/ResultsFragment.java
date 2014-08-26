@@ -5,11 +5,9 @@ package app.pacecalculator.android.lonerunner.info.pacecalculator;
  */
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +23,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import app.pacecalculator.android.lonerunner.info.pacecalculator.converters.PaceUtil;
 import app.pacecalculator.android.lonerunner.info.pacecalculator.converters.Sorter;
@@ -33,7 +33,7 @@ import app.pacecalculator.android.lonerunner.info.pacecalculator.converters.Sort
  * A placeholder fragment containing a simple view.
  */
 public class ResultsFragment extends Fragment implements TimePickerFragment.TimeSetNotifyListener,
-        DistancePickerFragment.DistanceSetNotifyListener
+        DistancePickerFragment.DistanceSetNotifyListener, PacePickerFragment.PaceSetNotifyListener
 {
 
     private List<Map<String, String>> distanceData = new ArrayList<Map<String, String>>();
@@ -43,10 +43,11 @@ public class ResultsFragment extends Fragment implements TimePickerFragment.Time
     private String entryTime = "00:00:00";
     private String entryDistance = "0.0";
     private String units = "km";
+    private String entryDistanceUnits = entryDistance + " "+units;
     private Button timeButton;
     private Button distanceButton;
     private Button paceButton;
-    private String TAG = "Fragment";
+    private String pace = "00:00/km";
 
 
     @Override
@@ -66,7 +67,7 @@ public class ResultsFragment extends Fragment implements TimePickerFragment.Time
             }
         });
 
-        distanceButton = (Button)headerView.findViewById(R.id.distanceButton);
+        distanceButton = (Button) headerView.findViewById(R.id.distanceButton);
         distanceButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -76,28 +77,21 @@ public class ResultsFragment extends Fragment implements TimePickerFragment.Time
             }
         });
 
-        //Log.v("onCreateView", "Now");
 
-        if ((savedInstanceState != null))
-        {
-            entryTime = savedInstanceState.getString("entryTime");
-            timeButton.setText(entryTime);
-            //Log.v("Retrieving SavedInstance", savedInstanceState.getString("entryTime"));
-        }
 
-        paceButton = (Button)headerView.findViewById(R.id.paceButton);
+
+
+        paceButton = (Button) headerView.findViewById(R.id.paceButton);
         paceButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                showPaceDialog(view);
 
             }
         });
         setPace();
-
-
-        //Log.v("RestoringInstanceState", savedInstanceState.toString());
 
 
 
@@ -113,8 +107,6 @@ public class ResultsFragment extends Fragment implements TimePickerFragment.Time
         resultsView.setAdapter(mResultsAdapter);
         return rootView;
     }
-
-
 
 
     private void updateDistancePreferences()
@@ -173,25 +165,15 @@ public class ResultsFragment extends Fragment implements TimePickerFragment.Time
 
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState)
-    {
 
-        outState.putString("entryTime", entryTime);
-        outState.putString("distance", entryDistance);
-        super.onSaveInstanceState(outState);
-        //Log.v("SavedInstanceState", outState.toString());
-
-    }
 
 
     public void showTimePickerDialog(View view)
     {
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.addToBackStack(null);
-        ft.commit();
+        Bundle bundle = new Bundle();
+        bundle.putString(getString(R.string.time), entryTime);
         TimePickerFragment timePicker = new TimePickerFragment();
+        timePicker.setArguments(bundle);
         timePicker.setTargetFragment(this, 0);
         timePicker.show(getFragmentManager(), "time picker");
 
@@ -199,34 +181,75 @@ public class ResultsFragment extends Fragment implements TimePickerFragment.Time
 
     public void showDistanceDialog(View view)
     {
+        Bundle bundle = new Bundle();
+        bundle.putString(getString(R.string.distance), entryDistanceUnits);
         DistancePickerFragment distancePicker = new DistancePickerFragment();
-        distancePicker.setTargetFragment(this,1);
+        distancePicker.setArguments(bundle);
+        distancePicker.setTargetFragment(this, 1);
         distancePicker.show(getFragmentManager(), "distance picker");
+
+    }
+
+    public void showPaceDialog(View view)
+    {
+        Bundle bundle = new Bundle();
+        if (pace != null)
+        {
+            bundle.putString(getString(R.string.pace), pace);
+        }
+
+        PacePickerFragment pacePicker = new PacePickerFragment();
+        pacePicker.setTargetFragment(this, 1);
+        pacePicker.setArguments(bundle);
+        pacePicker.show(getFragmentManager(), "pace picker");
 
     }
 
 
     @Override
-    public void onComplete(String time)
+    public void onPaceSet(String pace)
     {
-
-        timeButton.setText(time);
-        entryTime = time;
-        if(Double.parseDouble(entryDistance)>0)
+        paceButton.setText(pace);
+        this.pace = pace;
+        Pattern pattern = Pattern.compile("[0-9]+|[a-z]+");
+        Matcher matcher = pattern.matcher(pace);
+        List<String> paceArray = new ArrayList<String>();
+        while (matcher.find())
         {
-            updateDistancePreferences();
-            setPace();
+            paceArray.add((matcher.group()));
         }
+        if (paceArray.get(2).contains(getString(R.string.km)))
+        {
+            units = getString(R.string.km);
+        } else
+        {
+            units = getString(R.string.mile);
+        }
+        entryDistance = "1.0";
+        StringBuilder sb = new StringBuilder().append("00:").append(paceArray.get(0)).append(":").append(paceArray.get(1));
+        String time = sb.toString();
+        setDistanceButtonText(entryDistance, units);
+        setTimeButtonText(time);
+        updateDistancePreferences();
+
+
+    }
+
+    private void setTimeButtonText(String time)
+    {
+        entryTime = time;
+        timeButton.setText(entryTime);
+
     }
 
 
     @Override
     public void onDistanceSet(String distance, String units)
     {
-        distanceButton.setText(distance + " " + units);
-        entryDistance = distance;
+        setDistanceButtonText(distance, units);
+
         this.units = units;
-        if(PaceUtil.isSetTime(entryTime))
+        if (PaceUtil.isSetTime(entryTime))
         {
             updateDistancePreferences();
             setPace();
@@ -234,15 +257,35 @@ public class ResultsFragment extends Fragment implements TimePickerFragment.Time
 
     }
 
+    private void setDistanceButtonText(String distance, String units)
+    {
+
+        entryDistance = distance;
+        entryDistanceUnits = distance + " "+units;
+        distanceButton.setText(entryDistanceUnits);
+    }
+
     private void setPace()
     {
-        Log.v("Set Pace vars", ""+ PaceUtil.isSetTime(entryTime) + Double.parseDouble(entryDistance));
-        if(PaceUtil.isSetTime(entryTime) && Double.parseDouble(entryDistance)>0)
+
+        if (PaceUtil.isSetTime(entryTime) && Double.parseDouble(entryDistance) > 0)
         {
             PaceUtil paceUtil = new PaceUtil(entryTime, entryDistance, units);
-            paceButton.setText(paceUtil.calculatePace());
+            pace = paceUtil.calculatePace();
+            paceButton.setText(pace);
         }
     }
 
 
+    @Override
+    public void onTimeSet(String time)
+    {
+        setTimeButtonText(time);
+        if (Double.parseDouble(entryDistance) > 0)
+        {
+            updateDistancePreferences();
+            setPace();
+        }
+
+    }
 }

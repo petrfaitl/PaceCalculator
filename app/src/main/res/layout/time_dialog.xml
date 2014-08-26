@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/timePickerContainer"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:gravity="center">
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hourPicker"
+        android:paddingRight="@dimen/elements_half_padding"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/hour_label"
+        android:paddingRight="@dimen/elements_padding"
+        android:textColor="@android:color/darker_gray"/>
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/minutePicker"
+        android:paddingLeft="@dimen/elements_half_padding"
+        android:paddingRight="@dimen/elements_half_padding"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/minute_label"
+        android:textColor="@android:color/darker_gray"
+        android:paddingRight="@dimen/elements_padding"/>
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/secondsPicker"
+        android:paddingLeft="@dimen/elements_half_padding"
+        android:paddingRight="@dimen/elements_half_padding"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/seconds_label"
+        android:textColor="@android:color/darker_gray"/>
+
+
+
+</LinearLayout>

@@ -23,7 +23,7 @@ public class PaceUtil
     {
         this.timeInMilisec = getTimeInMiliseconds(time);
         this.units = distanceUnits;
-        if(distanceUnits.equals("miles"))
+        if(distanceUnits.contains("mile"))
         {
             this.distanceInMetres = convertToLongFormat(distance,MILES_TO_METRES_FACTOR) ;
         }else
@@ -63,16 +63,19 @@ public class PaceUtil
         return calculatedTime;
     }
 
-    @Override
-    public String toString()
+
+    public String paceToString(long inputTime)
     {
-        int hours = (int) (timeInMilisec / HOUR_IN_MILS);
-        long remainder = (timeInMilisec % HOUR_IN_MILS);
+        int hours = ((int) (inputTime / HOUR_IN_MILS));
+        long remainder = (inputTime % HOUR_IN_MILS);
         int minutes = (int) (remainder / MINUTE_IN_MILS);
         remainder = remainder % MINUTE_IN_MILS;
         int seconds = (int) (remainder / SECOND_IN_MILS);
-        remainder = remainder % SECOND_IN_MILS;
-        return String.format("%02d:", hours) + String.format("%02d:", minutes) + String.format("%02d", seconds);
+        if (hours > 0)
+        {
+            return String.format("%02d:", hours) + String.format("%02d:", minutes) + String.format("%02d", seconds) + "/" + units;
+        }
+        return String.format("%02d:", minutes) + String.format("%02d", seconds) + "/" + units;
     }
 
     public String toString(long inputTime)
@@ -110,7 +113,7 @@ public class PaceUtil
             this.calculatedTime = timeInMilisec / distanceInMetres * MILES_TO_METRES_FACTOR;
         }
 
-        return toString(calculatedTime);
+        return paceToString(calculatedTime);
 
     }
 

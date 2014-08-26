@@ -2,39 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/activity_horizontal_margin"
-    android:clickable="false"
-    style="?android:attr/buttonBarStyle"
-    >
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:orientation="horizontal"
+    style="?android:attr/buttonBarStyle">
 
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/time_button_label"
         android:id="@+id/timeButton"
         android:layout_weight="1"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@drawable/color_primary"
         android:textColor="@android:color/white"
         style="?android:attr/buttonBarButtonStyle"/>
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/distance_button_label"
         android:id="@+id/distanceButton"
         android:layout_weight="1"
         style="?android:attr/buttonBarButtonStyle"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@drawable/color_primary"
         android:textColor="@android:color/white"/>
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pace_button_label"
         android:id="@+id/paceButton"
         android:layout_weight="1"
+
         style="?android:attr/buttonBarButtonStyle"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@drawable/color_primary"
         android:textColor="@android:color/white"/>
 </LinearLayout>

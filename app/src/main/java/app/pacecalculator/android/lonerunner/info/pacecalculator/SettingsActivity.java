@@ -26,6 +26,7 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         addPreferencesFromResource(R.xml.prefs_general);
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_gender_key)));
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_age_key)));
@@ -78,6 +79,8 @@ public class SettingsActivity extends PreferenceActivity implements
                                    .getString(preference.getKey(), "")
         );
     }
+
+
 
 
 }
