@@ -1,5 +1,9 @@
 package app.pacecalculator.android.lonerunner.info.pacecalculator.converters;
 
+import android.content.Context;
+
+import app.pacecalculator.android.lonerunner.info.pacecalculator.R;
+
 /**
  * Created by Petr on 2014-08-01.
  */
@@ -11,19 +15,19 @@ public class PaceUtil
     private long timeInMilisec;
     private long distanceInMetres;
     private long calculatedTime;
-    private static final long HOUR_IN_MILS = 3600000L;
-    private static final long MINUTE_IN_MILS = 60000L;
-    private static final long SECOND_IN_MILS = 1000L;
-    private static final long MILES_TO_METRES_FACTOR = 1609;
-    private static final long KM_TO_METRES_FACTOR = 1000;
+    private static final long HOUR_IN_MILS = 3600000l;
+    private static final long MINUTE_IN_MILS = 60000l;
+    private static final long SECOND_IN_MILS = 1000l;
+    private static final long MILES_TO_METRES_FACTOR = 1609l;
+    private static final long KM_TO_METRES_FACTOR = 1000l;
     private String units;
 
 
-    public PaceUtil(String time, String distance, String distanceUnits)
+    public PaceUtil(Context context, String time, String distance, String distanceUnits)
     {
         this.timeInMilisec = getTimeInMiliseconds(time);
         this.units = distanceUnits;
-        if(distanceUnits.contains("mile"))
+        if(distanceUnits.contains(context.getString(R.string.mile)))
         {
             this.distanceInMetres = convertToLongFormat(distance,MILES_TO_METRES_FACTOR) ;
         }else
@@ -70,7 +74,7 @@ public class PaceUtil
         long remainder = (inputTime % HOUR_IN_MILS);
         int minutes = (int) (remainder / MINUTE_IN_MILS);
         remainder = remainder % MINUTE_IN_MILS;
-        int seconds = (int) (remainder / SECOND_IN_MILS);
+        int seconds = (Math.round(remainder / SECOND_IN_MILS));
         if (hours > 0)
         {
             return String.format("%02d:", hours) + String.format("%02d:", minutes) + String.format("%02d", seconds) + "/" + units;
@@ -84,8 +88,8 @@ public class PaceUtil
         long remainder = (inputTime % HOUR_IN_MILS);
         int minutes = (int) (remainder / MINUTE_IN_MILS);
         remainder = remainder % MINUTE_IN_MILS;
-        int seconds = (int) (remainder / SECOND_IN_MILS);
-        remainder = remainder % SECOND_IN_MILS;
+        int seconds = (Math.round(remainder / SECOND_IN_MILS));
+
         return String.format("%02d:", hours) + String.format("%02d:", minutes) + String.format("%02d", seconds);
     }
 

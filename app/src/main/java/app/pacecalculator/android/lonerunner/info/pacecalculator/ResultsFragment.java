@@ -151,7 +151,7 @@ public class ResultsFragment extends Fragment implements TimePickerFragment.Time
 
     private String estimateTime(String factor)
     {
-        PaceUtil paceUtil = new PaceUtil(entryTime, entryDistance, units);
+        PaceUtil paceUtil = new PaceUtil(getActivity(),entryTime, entryDistance, units);
         return paceUtil.estimateTime(factor);
     }
 
@@ -270,7 +270,7 @@ public class ResultsFragment extends Fragment implements TimePickerFragment.Time
 
         if (PaceUtil.isSetTime(entryTime) && Double.parseDouble(entryDistance) > 0)
         {
-            PaceUtil paceUtil = new PaceUtil(entryTime, entryDistance, units);
+            PaceUtil paceUtil = new PaceUtil(getActivity(),entryTime, entryDistance, units);
             pace = paceUtil.calculatePace();
             paceButton.setText(pace);
         }

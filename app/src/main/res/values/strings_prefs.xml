@@ -47,11 +47,11 @@
         <item>15000</item>
         <item>16090</item>
         <item>20000</item>
-        <item>21100</item>
-        <item>42200</item>
+        <item>21097</item>
+        <item>42195</item>
         <item>50000</item>
         <item>100000</item>
-        <item>160900</item>
+        <item>160934</item>
     </string-array>
 
     <string-array name="pref_distances_list_default_values">
@@ -64,8 +64,8 @@
         <item>1609</item>
         <item>5000</item>
         <item>10000</item>
-        <item>21100</item>
-        <item>42200</item>
+        <item>21097</item>
+        <item>42195</item>
 
     </string-array>
 
